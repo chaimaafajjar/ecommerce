@@ -33,19 +33,24 @@ public class EcommerceApplication implements CommandLineRunner {
 
       repositoryRestConfiguration.exposeIdsFor(Product.class,Category.class);
 
-		categoryRepository.save(new Category(null,"Ordinateur",null,null,null));
-		categoryRepository.save(new Category(null,"Phone",null,null,null));
-		categoryRepository.save(new Category(null,"Printers",null,null,null));
+		categoryRepository.save(new Category(null,"Ordinateur",null,"computers.png",null));
+		categoryRepository.save(new Category(null,"Phone",null,"smartphones.png",null));
+		categoryRepository.save(new Category(null,"Printers",null,"printers.png",null));
+		categoryRepository.save(new Category(null,"TV",null,"computers.png",null));
+		categoryRepository.save(new Category(null,"Clothes",null,"printers.png",null));
+		categoryRepository.save(new Category(null,"Camera",null,"smartphones.png",null));
 		Random rnd=new Random();
 		categoryRepository.findAll().forEach(c->{
-			Product p=new Product();
-			p.setName(RandomString.make(18));
-			p.setCurrentprice(100+rnd.nextInt(10000));
-			p.setAvailable(rnd.nextBoolean());
-			p.setPromotion(rnd.nextBoolean());
-			p.setCategory(c);
-			p.setPhotoName("pasPhoto.png");
-			productRepository.save(p);
+			for (int i = 0; i < 10; i++) {
+				Product p = new Product();
+				p.setName(RandomString.make(18));
+				p.setCurrentprice(100 + rnd.nextInt(10000));
+				p.setAvailable(rnd.nextBoolean());
+				p.setPromotion(rnd.nextBoolean());
+				p.setCategory(c);
+				p.setPhotoName("computers.png");
+				productRepository.save(p);
+			}
 		});
 	}
 }
